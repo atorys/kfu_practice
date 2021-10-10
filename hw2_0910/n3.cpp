@@ -33,8 +33,10 @@ int main(void)
         {
             for (int y = x - 2; y > 0; y -= 2) {
                 sum_y = sum(y);
-                if (sum_x == y && sum_y == x)
+                if (sum_x == y && sum_y == x) {
                     std::cout << "its a match!! " << x << ", " << y << std::endl;
+                    break ;
+                }
             }
         }
         else
