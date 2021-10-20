@@ -9,12 +9,15 @@
 
 #include <iostream>
 
-int get_number(int n)
+void get_number(int n)
 {
     if (n >= 0 && n < 10)
-        return (n);
+        std::cout << n << " ";
     else
-        return (get_number(n / 10));
+    {
+        get_number(n / 10);
+        std::cout << n % 10 << " ";
+    }
 }
 
 int main(void)
@@ -24,6 +27,7 @@ int main(void)
     std::cout << "n = ";
     std::cin >> n;
 
-    n = 1 - 2 *(n < 0);
-    std::cout << get_number(n) << std::endl;
+    n *= 1 - 2 * (n < 0);
+    get_number(n);
+    std::cout << std::endl;
 }
