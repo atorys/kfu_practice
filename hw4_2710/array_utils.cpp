@@ -2,7 +2,7 @@
 // Created by atory on 27.10.2021.
 //
 
-#include "array_utils.h"
+#include "array_utils.hpp"
 
 void    print_array(int array[], int len)
 {
