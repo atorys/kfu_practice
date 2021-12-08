@@ -50,12 +50,27 @@ std::tuple <int, int>   find_min_element(int **matrix, int height, int width)
     return(std::make_tuple(minI, minJ));
 }
 
-void deleteMinElem(int **matrix, int height, int width)
+int **deleteMinElem(int **matrix, int height, int width)
 {
     int i, j;
+    int skip_i = 0, skip_j;
 
     std::tie(i, j) = find_min_element(matrix, height, width);
-    std::cout << i << j;
+    int **newMatrix = new int *[height - 1];
+    for (int i = 0; i < height - 1; i++)
+        newMatrix[i] = new int [width - 1];
+
+    for (int m = 0; m < height - 1; m++) {
+        skip_j = 0;
+        for (int n = 0; n < width - 1; n++) {
+            if (m == i)
+                skip_i = 1;
+            if (n == j)
+                skip_j = 1;
+            newMatrix[m][n] = matrix[m + skip_i][n + skip_j];
+        }
+    }
+    return (newMatrix);
 }
 
 int main()
@@ -73,5 +88,6 @@ int main()
     std::cout << "MATRIX" << std::endl;
     print_matrix(matrix, height, width);
 
-    deleteMinElem(matrix, height, width);
+    std::cout << "DELETE MIN ELEMENT lINE MATRIX" << std::endl;
+    print_matrix(deleteMinElem(matrix, height, width), height - 1, width - 1);
 }

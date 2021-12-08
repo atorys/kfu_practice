@@ -13,6 +13,7 @@ int main()
     char word[1000];
 
     setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL,".1251");
     std::cin >> word;
     for (int i = 0; i < std::strlen(word) / 2; i++) {
         if (word[i] != word[std::strlen(word) - i - 1]) {
