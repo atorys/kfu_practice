@@ -28,6 +28,13 @@ void    print_matrix(int **matrix, int height, int width)
     std::cout << std::endl;
 }
 
+void    free_matrix(int **array, int height)
+{
+    for(int i = 0; i < height; ++i)
+        delete[] array[i];
+    delete[] array;
+}
+
 int   find_max_element(int **matrix, int width, int i)
 {
     int maxJ = 0;
@@ -75,4 +82,5 @@ int main()
         matrix[i][find_min_element(matrix, width, i)] = matrix[i - 1][find_max_element(matrix, width, i - 1)];
     }
     print_matrix(matrix, height, width);
+    free_matrix(matrix, height);
 }

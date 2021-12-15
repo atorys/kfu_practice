@@ -29,6 +29,13 @@ void    print_matrix(int **matrix, int height, int width)
     std::cout << std::endl;
 }
 
+void    free_matrix(int **array, int height)
+{
+    for(int i = 0; i < height; ++i)
+        delete[] array[i];
+    delete[] array;
+}
+
 std::tuple <int, int>   find_min_element(int **matrix, int height, int width)
 {
     int minI = 0, minJ = 0;
@@ -79,4 +86,5 @@ int main()
     std::cout << "SWAP" << std::endl;
     swap_i_j(matrix, height, width, i, j);
     print_matrix(matrix, height, width);
+    free_matrix(matrix, height);
 }

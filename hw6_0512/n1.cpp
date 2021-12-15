@@ -17,6 +17,13 @@ void    fill_matrix(int **matrix, int height, int width)
             matrix[i][j] =  rand() % 100 + 1;
 }
 
+void    free_matrix(int **array, int height)
+{
+    for(int i = 0; i < height; ++i)
+        delete[] array[i];
+    delete[] array;
+}
+
 void    print_array(int array[], int len)
 {
     for (int i = 0; i < len; i++)
@@ -90,4 +97,5 @@ int main()
 
     std::cout << "DELETE MIN ELEMENT lINE MATRIX" << std::endl;
     print_matrix(deleteMinElem(matrix, height, width), height - 1, width - 1);
+    free_matrix(matrix, height);
 }

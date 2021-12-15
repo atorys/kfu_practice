@@ -6,7 +6,7 @@
 #include <iostream>
 
 /**
- * Составьте программу, меняющую местами элементы матрицы симметрично побочной диагонали.
+ * Составьте программу, меняющую местами элементы квадратной матрицы симметрично побочной диагонали.
  */
 
 void    fill_matrix(int **matrix, int height, int width)
@@ -25,6 +25,13 @@ void    print_matrix(int **matrix, int height, int width)
         std::cout << std::endl;
     }
     std::cout << std::endl;
+}
+
+void    free_matrix(int **array, int height)
+{
+    for(int i = 0; i < height; ++i)
+        delete[] array[i];
+    delete[] array;
 }
 
 void swapDiagonal(int **matrix, int height, int width)
@@ -56,4 +63,5 @@ int main()
     std::cout << "SWAP" << std::endl;
     swapDiagonal(matrix, height, width);
     print_matrix(matrix, height, width);
+    free_matrix(matrix, height);
 }

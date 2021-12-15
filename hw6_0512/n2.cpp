@@ -29,7 +29,14 @@ void    print_matrix(int **matrix, int height, int width)
     std::cout << std::endl;
 }
 
-int **matrixMultiplication(int **m1, int **m2, int height, int width)
+void    free_matrix(int **array, int height)
+{
+    for(int i = 0; i < height; ++i)
+        delete[] array[i];
+    delete[] array;
+}
+
+int **matrixMultiplication(int **m1, int **m2, int height, int width, int width2)
 {
     int **matrix = new int *[height];
     for (int i = 0; i < height; i++)
@@ -40,7 +47,7 @@ int **matrixMultiplication(int **m1, int **m2, int height, int width)
         for (int j = 0; j < width; j++)
         {
             elem = 0;
-            for (int m = 0; m <= width; m++)
+            for (int m = 0; m < width2; m++)
                 elem += m1[i][m] * m2[m][j];
             matrix[i][j] = elem;
         }
@@ -76,5 +83,11 @@ int main()
     if (width != height2)
         std::cout << "IMPOSSIBLE" << std::endl;
     else
-        print_matrix(matrixMultiplication(matrix, matrix2, height, width2), height, width2);
+    {
+        int **matrix_mult = matrixMultiplication(matrix, matrix2, height, width2, width);
+        print_matrix(matrix_mult, height, width2);
+        free_matrix(matrix_mult, height);
+    }
+    free_matrix(matrix, height);
+    free_matrix(matrix2, height2);
 }
